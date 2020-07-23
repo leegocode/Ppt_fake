@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<h1>新增看板 新增看板</h1>
+<!-- <a href="<%= new_board_path %>"> 新增看板 </a> -->
+<form action="/boards" method="post">
+  <label for="title"> 看板的名稱 : </label>
+  <input type="text" name="title" id="title">
+  <label for="intro"> 看板的名稱: </label>
+  <textarea name="intro" id="intro"></textarea>
+  <input type="submit" value="送出">
+</form>
+
+</body>
+</html>

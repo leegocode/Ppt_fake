@@ -7,7 +7,12 @@ class BoardsController < ApplicationController
 
 
    def new
-    
+    @boards = Board.all
    end
+
+  def create
+    render html: params[:title]
+    
+  end
 
 end
