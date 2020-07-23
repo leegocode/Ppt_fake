@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/about', to: "pages#about"
   # root 'pages#about'
 
-  get "/hello.php", to: "pages#php"
+  # get "/hello.php", to: "pages#php"
+
+  resources :boards #path:
 
 end
