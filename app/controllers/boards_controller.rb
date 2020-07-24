@@ -1,12 +1,12 @@
 class BoardsController < ApplicationController
 
   def index
-    @boards = Board.all
+    @boards = Board.where(deleted_at: nil)
 
   end
 
   def show
-      @board = Board.find(params[:id])
+    @board = Board.find(params[:id])
   end
 
 
@@ -43,12 +43,16 @@ class BoardsController < ApplicationController
     end
   end
 
+  def destroy
+    @board = Board.find(params[:id])
+    @board.destroy
+    redirect_to boards_path
   end
-
-
-
 
   private
   def board_params
     params.require(:board).permit(:title, :intro)
   end
+
+
+end
