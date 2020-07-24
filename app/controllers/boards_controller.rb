@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
 
   def create
     render html: params[:title]
-    
+
   end
 
 end
