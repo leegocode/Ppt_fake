@@ -7,15 +7,40 @@
   <title>Document</title>
 </head>
 <body>
-<h1>新增看板 新增看板</h1>
+
+  <% if @board.errors.any?  %>
+  <ul>
+  <% @board.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<h1>create new board</h1>
 <!-- <a href="<%= new_board_path %>"> 新增看板 </a> -->
-<form action="/boards" method="post">
+<!-- <form action="/boards" method="post">
   <label for="title"> 看板的名稱 : </label>
   <input type="text" name="title" id="title">
   <label for="intro"> 看板的名稱: </label>
   <textarea name="intro" id="intro"></textarea>
   <input type="submit" value="送出">
-</form>
+</form> -->
+
+<%= form_for(@board) do |f| %>
+<div class="field">
+  <%= f.label :title, "board name:" %>
+  <%= f.text_field :title %>
+</div>
+<div class="field">
+  <%= f.label :intro, "board description:" %>
+  <%= f.text_area :intro %>
+</div>
+
+
+
+
+<%= f.submit "submit" %>
+<% end %>
 
 
 
