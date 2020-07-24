@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-
-  <% if @board.errors.any?  %>
-  <ul>
-  <% @board.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-  </ul>
-<% end %>
 
 <h1>create new board</h1>
+<%= render 'form', board: @board %>
 <!-- <a href="<%= new_board_path %>"> 新增看板 </a> -->
 <!-- <form action="/boards" method="post">
   <label for="title"> 看板的名稱 : </label>
@@ -25,21 +9,3 @@
   <textarea name="intro" id="intro"></textarea>
   <input type="submit" value="送出">
 </form> -->
-
-<%= form_for(@board) do |f| %>
-<div class="field">
-  <%= f.label :title, "board name:" %>
-  <%= f.text_field :title %>
-</div>
-<div class="field">
-  <%= f.label :intro, "board description:" %>
-  <%= f.text_area :intro %>
-</div>
-
-<%= f.submit "submit" %>
-<% end %>
-
-
-
-</body>
-</html>
