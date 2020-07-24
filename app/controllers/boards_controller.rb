@@ -6,16 +6,18 @@ class BoardsController < ApplicationController
   end
 
   def show
-    begin
       @board = Board.find(params[:id])
-    rescue
-      render file: '/public/404.html', status: 404
-    end
   end
+
 
   def new
     @board = Board.new
   end
+
+  def edit
+    @board = Board.find(params[:id])
+  end
+
 
   def create
     @board = Board.new(board_params)
@@ -32,6 +34,17 @@ class BoardsController < ApplicationController
     # redirect_to "/"
   end
 
+  def update
+    @board = Board.find(params[:id])
+    if @board.update(board_params)
+      redirect_to boards_path, notice: "更新成功"
+    else
+      render :edit
+    end
+  end
+
+  end
+
 
 
 
@@ -39,5 +52,3 @@ class BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:title, :intro)
   end
-
-end
