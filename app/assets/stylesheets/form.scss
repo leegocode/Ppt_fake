@@ -4,31 +4,39 @@ form{
     display: block;
     text-transform: uppercase;
 
+
+
   }
 
   .field_with_errors{
     input{
+
       border: 2px solid rgb(231, 153, 155);
     }
   }
 }
 
 .field{
-  margin-bottom: 4rem;
+
+  margin-bottom: 2rem;
   padding: 0.6rem;
-  width:80%;
+  width:100%;
   background-color: rgba(#fdfff6, 0.54);
   border-radius: 5px;
 }
 
 ul{
   list-style-type: none;
+  padding-left: 0;
+
 }
 
 body{
+  margin:auto;
   font-family: sans-serif;
   font-weight: 200;
   h1{
+
 
     // background-color: rgb(191, 205, 222);
     // border: 1px solid rgb(255, 255, 255);
