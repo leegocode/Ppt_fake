@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-<h2></h2>
+
 <h1>首頁看板</h1>
 <!-- <a href="<%= new_board_path %>"> 新增看板 </a> -->
 <%= link_to "新增看板", new_board_path %>
@@ -20,7 +20,6 @@
         <%= link_to "edit", edit_board_path(board) %>
         <%= link_to "刪除", board_path(board), method: 'delete', data: { confirm: '確認刪除?'} %>
       </li>
-
 
     </div>
 

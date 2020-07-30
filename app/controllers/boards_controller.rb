@@ -1,8 +1,6 @@
 class BoardsController < ApplicationController
 before_action :find_board, only: [:show, :edit, :update, :destroy]
 
-
-
   def index
     @boards = Board.where(deleted_at: nil)
 
@@ -62,6 +60,5 @@ before_action :find_board, only: [:show, :edit, :update, :destroy]
   def board_params
     params.require(:board).permit(:title, :intro)
   end
-
 
 end

@@ -1,15 +1,20 @@
 <% if @board.errors.any?  %>
-<ul>
-<% @board.errors.full_messages.each do |msg| %>
-  <li><%= msg %></li>
+  <ul>
+    <% @board.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
-</ul>
-<% end %>
+
+
+
 <%= form_for(@board) do |f| %>
+
 <div class="field">
   <%= f.label :title, "board name:" %>
   <%= f.text_field :title %>
 </div>
+
 <div class="field">
   <%= f.label :intro, "board description:" %>
   <%= f.text_area :intro %>
@@ -18,4 +23,4 @@
 <%= f.submit "submit" %>
 <% end %>
 
-<%= link_to "首頁", boards_path %>
+<%= link_to "back", boards_path %>
