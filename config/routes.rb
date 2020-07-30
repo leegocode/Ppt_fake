@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   # get "/hello.php", to: "pages#php"
 
-  resources :boards #path:
+  resources :boards do
+    # resources :posts, only: [:index, :new, :create]
+    resources :posts, shallow:true
+
+  end#path:
+
+  # resources :posts, except: [:index, :new, :create]
 
 end

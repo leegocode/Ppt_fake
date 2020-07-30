@@ -1,0 +1,26 @@
+<% if @post.errors.any?  %>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h1>add new post</h1>
+
+<%= form_with(model: @post, url: board_posts_path) do |p| %>
+
+<div class="field">
+  <%= p.label :title, "title" %>
+  <%= p.text_field :title %>
+</div>
+
+<div class="field">
+  <%= p.label :text, "content" %>
+  <%= p.text_area :text %>
+</div>
+
+<%= p.submit "submit" %>
+<% end %>
+
+<%= link_to "back", boards_path %>
