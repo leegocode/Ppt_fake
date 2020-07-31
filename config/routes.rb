@@ -26,8 +26,9 @@ Rails.application.routes.draw do
     collection do
       get :sign_up
       get :edit
-      get :update
+      patch :update
       get :sign_in
+      post :login
       delete :sign_out
     end
   end
