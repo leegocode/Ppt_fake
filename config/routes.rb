@@ -15,8 +15,26 @@ Rails.application.routes.draw do
   resources :boards do
     # resources :posts, only: [:index, :new, :create]
     resources :posts, shallow:true
+  end
 
-  end#path:
+
+
+  resources :users, only: [:create] do
+    # member do 會有id
+    #   get :profile
+    # end
+    collection do
+      get :sign_up
+      get :edit
+      get :update
+      get :sign_in
+      delete :sign_out
+    end
+  end
+
+  #path:
+
+
 
   # resources :posts, except: [:index, :new, :create]
 
