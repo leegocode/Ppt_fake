@@ -8,7 +8,7 @@
 
 <h1>add new post</h1>
 
-<%= form_with(model: @post, url: board_posts_path) do |p| %>
+<%= form_with(model: @post, url: board_posts_path, local: true) do |p| %>
 
 <div class="field">
   <%= p.label :title, "title" %>
