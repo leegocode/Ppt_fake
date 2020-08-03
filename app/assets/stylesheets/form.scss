@@ -8,6 +8,8 @@ form{
 
   }
 
+
+
   .field_with_errors{
     input{
 
@@ -18,11 +20,12 @@ form{
 
 .field{
 
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   padding: 0.6rem;
   width:100%;
   background-color: rgba(#fdfff6, 0.54);
   border-radius: 5px;
+  text-align: center;
 }
 
 ul{
@@ -40,8 +43,11 @@ body{
 
     // background-color: rgb(191, 205, 222);
     // border: 1px solid rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 200;
+    display: block;
+    margin: auto;
+    text-align: center;
 
   }
   h2{
@@ -60,6 +66,23 @@ body{
 #text{
   color: rgb(244, 90, 90);
   font-size:20px;
+}
+
+nav{
+  background-color: rgba(0, 0, 0, 0.39);
+  color: white;
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+}
 
 
+input[type=submit] {
+  background-color: #090909;
+  padding: 1rem;
+  margin: auto;
+  display: block;
+  border: none;
+  color: white;
+   /*your styles here.....*/
 }

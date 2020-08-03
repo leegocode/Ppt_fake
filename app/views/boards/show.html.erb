@@ -2,21 +2,14 @@
 <%= link_to "add post", new_board_post_path(@board) %>
 
 <h1><%= @board.title %> board</h1>
-<h2><h2><%= @board.intro %></h2></h2>
-<div class="field">
+<h2><%= @board.intro %></h2>
 
-</div>
-<% @posts = @board.posts%>
 <% @board.posts.each do |post| %>
+
 <div class= "field">
-
-<%= post.title %>
+<%= link_to post.title , post_path(post)%>
 <%= post.content %>
-
 </div>
 <% end %>
 
-
-
-
-<%= link_to "首頁", boards_path %>
+<h1> <%= link_to "首頁", boards_path %> </h1>

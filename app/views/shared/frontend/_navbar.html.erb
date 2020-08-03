@@ -1,0 +1,12 @@
+<nav>
+  <ul>
+  <% if session[:user_token] %>
+  <li>/ <%= @current_user.account %></li>
+  <li>/ log out</li>
+  <% else %>
+  <li>/ log in</li>
+  <li>/ sign up</li>
+
+  <% end %>
+  </ul>
+</nav>

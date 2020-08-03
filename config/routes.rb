@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :boards do
     # resources :posts, only: [:index, :new, :create]
-    resources :posts, shallow:true
+    resources :posts, shallow:true , param: :permalink
   end
 
 

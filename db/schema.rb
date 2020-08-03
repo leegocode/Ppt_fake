@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_31_073801) do
+ActiveRecord::Schema.define(version: 2020_07_31_104107) do
 
   create_table "boards", force: :cascade do |t|
     t.string "title"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_07_31_073801) do
     t.string "serial"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "permalink"
     t.index ["board_id"], name: "index_posts_on_board_id"
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
     t.index ["serial"], name: "index_posts_on_serial", unique: true
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_07_31_073801) do
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "permalink"
     t.index ["account"], name: "index_users_on_account", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true

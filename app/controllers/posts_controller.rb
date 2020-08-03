@@ -5,6 +5,11 @@ class PostsController < ApplicationController
     @post = @board.posts.new
   end
 
+  def show
+    @post = Post.find_by(permalink: params[:permalink])
+  end
+
+
   def create
     @post = @board.posts.new(post_params)
 
@@ -20,8 +25,9 @@ class PostsController < ApplicationController
 private
 def find_board
   @board = Board.find(params[:board_id])
-
 end
+
+
 
 def post_params
 params.require(:post).permit(:title , :content)
