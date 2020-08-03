@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+
 before_action :find_board, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,8 +13,12 @@ before_action :find_board, only: [:show, :edit, :update, :destroy]
 
 
   def new
+    if user_sign_in?
     @board = Board.new
+  else
+    redirect_to root_path, notice: "please log in"
   end
+end
 
   def edit
     # @board = Board.find(params[:id])

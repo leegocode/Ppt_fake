@@ -69,17 +69,17 @@ body{
 }
 
 nav{
-  background-color: rgba(0, 0, 0, 0.39);
-  color: white;
-  display: inline-block;
-  margin: 1rem;
-  padding: 1rem;
+  background-color: rgba(205, 205, 205, 0.39);
+  color: rgb(221, 112, 72);
+  display: inline;
+  // margin: 1rem;
+  padding: 0.5rem;
 }
 
 
 input[type=submit] {
   background-color: #090909;
-  padding: 1rem;
+  padding: 0.6rem;
   margin: auto;
   display: block;
   border: none;
