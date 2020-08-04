@@ -1,1 +1,12 @@
 <h1>sign in</h1>
+<%= form_for(@user, url: login_users_path) do |form| %>
+<div class="field">
+  <%= form.label :account %>
+  <%= form.text_field :account, placeholder: "enter your account or email" %>
+</div>
+<div class="field">
+  <%= form.label :password %>
+  <%= form.text_field :password, placeholder: :password %>
+</div>
+<h1><%= form.submit "submit" %></h1>
+<% end %>

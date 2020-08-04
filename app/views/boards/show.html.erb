@@ -1,8 +1,9 @@
 
-<%= link_to "add post", new_board_post_path(@board) %>
+
 
 <h1><%= @board.title %> board</h1>
-<h2><%= @board.intro %></h2>
+<h2>版主 <%= display_bm(@board) %> </h2>
+<h1><%= link_to "add post", new_board_post_path(@board) %></h1>
 
 <% @board.posts.each do |post| %>
 

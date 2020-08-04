@@ -1,10 +1,11 @@
 class BoardsController < ApplicationController
 
-before_action :find_board, only: [:show, :edit, :update, :destroy]
+  before_action :find_board, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @boards = Board.where(deleted_at: nil)
-
+  
   end
 
   def show
@@ -13,12 +14,8 @@ before_action :find_board, only: [:show, :edit, :update, :destroy]
 
 
   def new
-    if user_sign_in?
-    @board = Board.new
-  else
-    redirect_to root_path, notice: "please log in"
+      @board = Board.new
   end
-end
 
   def edit
     # @board = Board.find(params[:id])
@@ -64,6 +61,10 @@ end
 
   def board_params
     params.require(:board).permit(:title, :intro)
+  end
+
+  def require_user_sign_in
+    redirect_to root_path, notice: "請登入會員" if not user_sign_in?
   end
 
 end

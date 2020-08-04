@@ -5,24 +5,28 @@ class User < ApplicationRecord
 
   before_create :encrypt_password
 
-   def self.login(option)
-     if option[:account] && option[:password]
-        find_by(account: option[:account],
-         password: Digest::SHA1.hexdigest('x'+option[:password]+'y'))
-     else
-       return false
-     end
-   end
-   
-   # User.login
+  has_many :board_masters
+  has_many :boards, through: :board_masters
 
-   private
-   def encrypt_password
-     self.password = bigbang(self.password)
-   end
+  def self.login(option)
+    if option[:account] && option[:password]
+      find_by(account: option[:account],
+      password: Digest::SHA1.hexdigest('x'+option[:password]+'y'))
 
-   def bigbang(string)
-     string = "x" + string + "y"
-     Digest::SHA1.hexdigest(string)
-   end
- end
+      else
+
+      end
+    end
+
+      # User.login
+
+      private
+      def encrypt_password
+        self.password = bigbang(self.password)
+      end
+
+      def bigbang(string)
+        string = "x" + string + "y"
+        Digest::SHA1.hexdigest(string)
+      end
+    end
