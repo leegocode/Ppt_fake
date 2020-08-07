@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_create :encrypt_password
 
   has_many :board_masters
+  has_many :posts
   has_many :boards, through: :board_masters
 
   def self.login(option)
@@ -17,6 +18,7 @@ class User < ApplicationRecord
 
       end
     end
+
 
       # User.login
 

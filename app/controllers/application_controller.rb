@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   # before_action :find_user
-  helper_method :user_signed_in? , :current_user
+  helper_method :user_sign_in? , :current_user
 
 
 

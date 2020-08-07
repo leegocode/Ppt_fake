@@ -5,10 +5,11 @@ class BoardsController < ApplicationController
 
   def index
     @boards = Board.where(deleted_at: nil)
-  
+
   end
 
   def show
+    @post = @board.posts.includes(:user)
     # @board = Board.find(params[:id])
   end
 

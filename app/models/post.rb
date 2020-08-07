@@ -1,15 +1,23 @@
 class Post < ApplicationRecord
   belongs_to :board
+  belongs_to :user
   validates :title, presence: true
   validates :serial, uniqueness: true
 
   before_create  :create_serial
-  before_create :generate_permalink
+  # before_create :generate_permalink
 
-  def to_param
-     self.permalink
-   end
+  # def to_param
+  #    self.permalink
+  #  end
 
+  def display_username
+    if user.nil?
+       "未知"
+     else
+       user.account
+     end
+  end
 
 
   private
