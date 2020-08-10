@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_024327) do
+ActiveRecord::Schema.define(version: 2020_08_10_024500) do
 
   create_table "board_masters", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -31,6 +31,27 @@ ActiveRecord::Schema.define(version: 2020_08_07_024327) do
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_boards_on_deleted_at"
     t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.string "content"
+    t.string "ip_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorite_boards", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "board_id", null: false
+    t.integer "position"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_favorite_boards_on_board_id"
+    t.index ["user_id"], name: "index_favorite_boards_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -69,5 +90,9 @@ ActiveRecord::Schema.define(version: 2020_08_07_024327) do
   add_foreign_key "board_masters", "boards"
   add_foreign_key "board_masters", "users"
   add_foreign_key "boards", "users"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorite_boards", "boards"
+  add_foreign_key "favorite_boards", "users"
   add_foreign_key "posts", "boards"
 end

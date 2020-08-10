@@ -9,16 +9,21 @@ Rails.application.routes.draw do
   root 'pages#index'
 
 
+  resources :favorites, only: [:index]
+
   # get "/hello.php", to: "pages#php"
 
   resources :boards do
     # resources :posts, only: [:index, :new, :create]
-    resources :posts, shallow:true
+    member do
+      post :favorite
+    end
+    resources :posts, shallow: true do
+     resources :comments, shallow: true, only: [:create]
+   end
   end
 
   # , param: :permalink
-
-
 
   resources :users, only: [:create] do
     # member do 會有id
@@ -33,10 +38,7 @@ Rails.application.routes.draw do
       delete :sign_out
     end
   end
-
   #path:
-
-
 
   # resources :posts, except: [:index, :new, :create]
 

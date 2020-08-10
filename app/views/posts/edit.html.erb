@@ -2,12 +2,12 @@
 
 <%= form_with(model: @post, local: true) do |form| %>
 
-  <div class="fields">
+  <div class="field">
     <%= form.label :title, "標題" %>
     <%= form.text_field :title %>
   </div>
 
-  <div class="fields">
+  <div class="field">
     <%= form.label :content, "內文" %>
     <%= form.text_area :content %>
   </div>

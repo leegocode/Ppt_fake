@@ -2,8 +2,24 @@
 
 
 <h1><%= @board.title %> board</h1>
+<h1>
+
+
+
+
+<%  if @favorite_or_not.exists? %>
+<%= link_to "remove from favorite", favorite_board_path(@board), method: 'post' %>
+<% else %>
+<%= link_to "add to favorite", favorite_board_path(@board), method: 'post' %>
+<% end %>
+
+
+
+
+</h1>
+
 <h2>版主 <%= display_bm(@board) %> </h2>
-<h1><%= link_to "add post", new_board_post_path(@board) %></h1>
+<h2><%= link_to "add post", new_board_post_path(@board) %></h2>
 
 <% @board.posts.each do |post| %>
 

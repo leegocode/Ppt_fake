@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
    if user
      sign_in_user(user)
-     redirect_to root_path, notice: "成功登入"
+     redirect_to boards_path, notice: "成功登入"
    else
      redirect_to sign_in_users_path, notice: "請輸入正確帳號密碼"
    end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       # 登入
       sign_in_user(@user)
-      redirect_to root_path, notice: '會員註冊成功'
+      redirect_to boards_path, notice: '會員註冊成功'
     else
       render :sign_up
     end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def sign_out
     sign_out_user
-    redirect_to root_path, notice: '登出成功'
+    redirect_to boards_path, notice: '登出成功'
   end
 
 

@@ -4,10 +4,14 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   before_create :encrypt_password
+  has_many :comments
 
   has_many :board_masters
   has_many :posts
   has_many :boards, through: :board_masters
+  has_many :favorite_boards
+  has_many :favorited_boards, through: :favorite_boards, source: :board
+
 
   def self.login(option)
     if option[:account] && option[:password]
@@ -20,6 +24,13 @@ class User < ApplicationRecord
     end
 
 
+    def toggle_favorite_board(b)
+       if favorited_boards.exists?(b.id)
+         favorited_boards.destroy(b)
+       else
+         favorited_boards << b
+       end
+    end
       # User.login
 
       private

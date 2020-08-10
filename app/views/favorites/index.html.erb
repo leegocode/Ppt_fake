@@ -1,0 +1,13 @@
+<h1>my favorites</h1>
+<div class="fields">
+  <% if @boards.any? %>
+  <ul>
+    <% @boards.each do |b| %>
+    <li><%= b.title %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <h1>no favorites now</h1>
+</div>
+<% end %>
+<%= link_to "boards", boards_path %>

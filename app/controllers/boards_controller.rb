@@ -1,18 +1,23 @@
 class BoardsController < ApplicationController
 
-  before_action :find_board, only: [:show, :edit, :update, :destroy]
+  before_action :find_board, only: [:show, :edit, :update, :destroy , :favorite]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @boards = Board.where(deleted_at: nil)
-
   end
 
   def show
     @post = @board.posts.includes(:user)
+    @favorite_or_not = current_user.favorited_boards.where(id: @board.id)
     # @board = Board.find(params[:id])
   end
 
+
+  def favorite
+    current_user.toggle_favorite_board(@board)
+    redirect_to favorites_path(from_board: @board.id), notice: 'OK!'
+  end
 
   def new
       @board = Board.new
@@ -58,6 +63,8 @@ class BoardsController < ApplicationController
   def find_board
     @board = Board.find(params[:id])
   end
+
+
 
 
   def board_params

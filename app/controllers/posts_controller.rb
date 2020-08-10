@@ -4,14 +4,21 @@ class PostsController < ApplicationController
 
   def new
     @post = @board.posts.new
+
   end
 
   def show
      @post = Post.find(params[:id])
+     @comment = @post.comments.new
+     @comments = @post.comments.order(id: :desc)
   end
 
   def edit
    @post = current_user.posts.find(params[:id])
+
+   unless @post.exist
+     redirect_to board_path, notice: '沒有權限'
+   end
  end
 
 
@@ -38,17 +45,19 @@ class PostsController < ApplicationController
 
   def edit
    @post = current_user.posts.find(params[:id])
- end
+  end
 
  def update
    @post = current_user.posts.find(params[:id])
-
    if @post.update(post_params)
      redirect_to @post, notice: '文章更新成功'
    else
      render :edit
    end
  end
+
+
+
 
 private
 def find_board
