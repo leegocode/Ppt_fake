@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   def new
     @post = @board.posts.new
-
   end
 
   def show
@@ -17,7 +16,7 @@ class PostsController < ApplicationController
    @post = current_user.posts.find(params[:id])
 
    unless @post.exist
-     redirect_to board_path, notice: '沒有權限'
+     redirect_to root_path, notice: '沒有權限'
    end
  end
 

@@ -14,4 +14,10 @@ has_many :favorited_users, through: :favorite_boards, source: :user
 
 validates :title, presence: true, length: { minimum: 2 }
 
+
+  def favorited_by?(u)
+    favorited_users.include?(u)
+  end
+
+
 end
