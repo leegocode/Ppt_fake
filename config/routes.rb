@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   root 'pages#index'
 
 
+  namespace :api do
+    namespace :v2 do
+      resources :boards, only: [:index]
+    end
+  end
+
+
   resources :favorites, only: [:index]
 
   # get "/hello.php", to: "pages#php"
