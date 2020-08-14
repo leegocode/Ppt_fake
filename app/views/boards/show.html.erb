@@ -4,10 +4,9 @@
 <h1> <%= @board.title %>board </h1>
 
 
-
+<h1><%= link_to "favorite", favorites_path %></h1>
 <h1 data-controller="heart" data-heart-board="<%= @board.id %>">
-  <%  if @favorite_or_not.exists? %>
-  <%= link_to "我的最愛", favorite_board_path(@board), method: 'post' %>
+
   <button data-action="click->heart#favorite">
      <% if @board.favorited_by?(current_user) %>
        <i class="fas fa-heart" data-target="heart.heart"></i>
@@ -15,21 +14,7 @@
        <i class="far fa-heart" data-target="heart.heart"></i>
      <% end %>
    </button>
-  <% else %>
-  <%= link_to "add to favorite", favorite_board_path(@board), method: 'post' %>
-  <button data-action="click->heart#favorite">
-     <% if @board.favorited_by?(current_user) %>
-       <i class="fas fa-heart" data-target="heart.heart"></i>
-     <% else %>
-       <i class="far fa-heart" data-target="heart.heart"></i>
-     <% end %>
-   </button>
-  <% end %>
 </h1>
-
-
-
-
 
 <h2>版主 <%= display_bm(@board) %> </h2>
 <h2><%= link_to "add post", new_board_post_path(@board) %></h2>

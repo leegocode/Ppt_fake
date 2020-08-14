@@ -1,17 +1,18 @@
 class BoardsController < ApplicationController
 
-  before_action :find_board, only: [:show, :edit, :update, :destroy , :favorite]
+  before_action :find_board, only: [:show, :edit, :update, :destroy , :favorite, :hide]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @boards = Board.where(deleted_at: nil)
+    @boards = Board.normal.page(params[:page]).per(3)
   end
 
   def show
     @post = @board.posts.includes(:user)
-    @favorite_or_not = current_user.favorited_boards.where(id: @board.id)
-    # @board = Board.find(params[:id])
+    # @favorite_or_not = current_user.favorited_boards.where(id: @board.id)
+    #@board = Board.find(params[:id])
   end
+
 
 
   def favorite
@@ -23,8 +24,14 @@ class BoardsController < ApplicationController
     end
   end
 
+  def hide
+    @board.hide! if @board.may_hide?
+    redirect_to boards_path, notice: '看版己隱藏'
+  end
+
   def new
-      @board = Board.new
+    @board = Board.new
+    authorize @board, :new?
   end
 
   def edit
@@ -34,6 +41,8 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
+    @board.users << current_user
+    authorize @board, :create?
 
     if @board.save
       # flash[:notice] = "new article!"
@@ -65,7 +74,7 @@ class BoardsController < ApplicationController
   private
 
   def find_board
-    @board = Board.find(params[:id])
+    @board = Board.normal.find(params[:id])
   end
 
 

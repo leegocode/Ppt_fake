@@ -5,8 +5,19 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # get 'pages/index'
-  # root 'boards#index'  #
-  root 'pages#index'
+  root "pages#index"
+   get "/about", to: "pages#about"
+   get "/pricing", to: "pages#pricing"
+   get "/payment", to: "pages#payment"
+   post "/checkout", to: "pages#checkout"
+  # root 'pages#index'
+
+
+  namespace :api do
+    namespace :v2 do
+      resources :boards, only: [:index]
+    end
+  end
 
 
   resources :favorites, only: [:index]
@@ -17,7 +28,13 @@ Rails.application.routes.draw do
     # resources :posts, only: [:index, :new, :create]
     member do
       post :favorite
+      put :hide
     end
+
+    member do
+      put :hide
+    end
+
     resources :posts, shallow: true do
      resources :comments, shallow: true, only: [:create]
    end
