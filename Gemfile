@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'paranoia', '~> 2.1', '>= 2.1.5'
 gem 'aasm', '~> 5.1', '>= 5.1.1'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 
 group :development, :test do

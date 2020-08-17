@@ -24,9 +24,10 @@
       <%= link_to "刪除", board_path(board), method: 'delete', data: { confirm: '確認刪除?'} %>
       <%= link_to "hidden", hide_board_path(board), method: 'put' %>
     </li>
-
   </div>
 
   <% end %>
 
 </ul>
+
+<%= paginate @boards %>
