@@ -4,14 +4,16 @@ class BoardsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-     @boards = Board.normal.page(params[:page]).per(3)
-
+    @boards = Board.normal.page(params[:page]).per(3)
   end
 
   def show
     @post = @board.posts.includes(:user)
-    @favorite_or_not = current_user.favorited_boards.where(id: @board.id)
-    # @board = Board.find(params[:id])
+    # @favorite_or_not = current_user.favorited_boards.where(id: @board.id)
+    #@board = Board.find(params[:id])
+  end
+
+  def pricing
   end
 
 
@@ -25,12 +27,13 @@ class BoardsController < ApplicationController
   end
 
   def hide
-   @board.hide! if @board.may_hide?
-   redirect_to boards_path, notice: '看版己隱藏'
+    @board.hide! if @board.may_hide?
+    redirect_to boards_path, notice: '看版己隱藏'
   end
 
   def new
-      @board = Board.new
+    @board = Board.new
+    authorize @board, :new?
   end
 
   def edit
@@ -40,6 +43,8 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
+    @board.users << current_user
+    authorize @board, :create?
 
     if @board.save
       # flash[:notice] = "new article!"

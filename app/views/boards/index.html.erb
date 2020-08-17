@@ -10,7 +10,8 @@
 
 
 <h1>首頁看板</h1>
-<h1><%= link_to "新增看板", new_board_path %></h1>
+
+<%= link_to "新增看版", new_board_path if policy(:board).create? %>
 <h1><%= link_to "favorite", favorites_path %></h1>
 <!-- <a href="<%= new_board_path %>"> 新增看板 </a> -->
 

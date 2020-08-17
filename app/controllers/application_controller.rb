@@ -1,20 +1,23 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
-
-
   include Pundit
-  # before_action :find_user
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+  before_action :find_user
   helper_method :user_sign_in? , :current_user
 
 
 
   private
 
-  # def find_user
-  #   if session[:user_token]
-  #     @current_user = User.find(session[:user_token])
-  #   end
-  # end
+  def not_authorized
+    redirect_to root_path, notice: '權限不足'
+  end
+
+  def find_user
+    if session[:user_token]
+      @current_user = User.find(session[:user_token])
+    end
+  end
 
   def not_found
     render file: '/public/404.html', status: 404,
