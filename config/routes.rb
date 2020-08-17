@@ -9,6 +9,7 @@ Rails.application.routes.draw do
    get "/about", to: "pages#about"
    get "/pricing", to: "pages#pricing"
    get "/payment", to: "pages#payment"
+   post "/checkout", to: "pages#checkout"
   # root 'pages#index'
 
 
