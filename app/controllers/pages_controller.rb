@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
 
   def payment
+    @token = gateway.client_token.generate
     @plan = params[:plan]
     @price = case @plan
     when "a"
@@ -19,5 +20,13 @@ class PagesController < ApplicationController
     end
   end
 
-
+private
+def gateway
+  Braintree::Gateway.new(
+    :environment => :sandbox,
+    :merchant_id => 'b9znt8x85cxdpt5t',
+    :public_key => 'gfd6zbx5sbhjtmbd',
+    :private_key => 'e6a195a4af7f788b7c1eb975fd7f6026',
+  )
+end
 end

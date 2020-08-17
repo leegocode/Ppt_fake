@@ -13,8 +13,6 @@ class BoardsController < ApplicationController
     #@board = Board.find(params[:id])
   end
 
-  def pricing
-  end
 
 
   def favorite

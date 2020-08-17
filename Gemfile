@@ -31,6 +31,7 @@ gem 'paranoia', '~> 2.1', '>= 2.1.5'
 gem 'aasm', '~> 5.1', '>= 5.1.1'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'pundit', '~> 2.1'
+gem "braintree", "~> 2.102.0"
 
 
 group :development, :test do

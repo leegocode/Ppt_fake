@@ -1,2 +1,32 @@
 <h1>方案 <%= @plan.upcase %></h1>
 <h1>價錢 <%= @price %></h1>
+
+
+<script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
+<div class="field">
+  <%= form_with(url: '#', method: 'post', local: true) do %>
+  <div id="dropin-container"></div>
+  <button id="submit-button">付款</button>
+<% end %>
+
+</div>
+
+
+<script>
+  var button = document.querySelector('#submit-button');
+
+  braintree.dropin.create({
+    authorization: '<%= @token %>',
+    container: '#dropin-container'
+  }, function (createErr, instance) {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      instance.requestPaymentMethod(function (err, payload) {
+        // console.log(payload);
+        const form = document.querySelector('#payment_form');
+        form.submit();
+        // Submit payload.nonce to your server
+      });
+    });
+  });
+</script>
