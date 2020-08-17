@@ -19,5 +19,36 @@ validates :title, presence: true, length: { minimum: 2 }
     favorited_users.include?(u)
   end
 
+  include AASM
+
+  aasm(column: 'state') do
+    state :normal, initial: true
+    state :hidden, :locked
+
+    event :hide do
+      transitions from: [:normal, :locked], to: :hidden
+    end
+
+    event :show do
+      transitions from: :hidden, to: :locked
+    end
+
+    event :lock do
+      transitions from: [:normal, :hidden], to: :locked
+
+      after_transaction do
+        puts "locked"
+      end
+    end
+
+    event :unluck do
+      transitions from: :locked, to: :normal
+    end
+
+
+
+
+  end
+
 
 end

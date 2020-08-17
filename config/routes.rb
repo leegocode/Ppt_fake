@@ -24,8 +24,13 @@ Rails.application.routes.draw do
     # resources :posts, only: [:index, :new, :create]
     member do
       post :favorite
+      put :hide
     end
-    
+
+    member do
+      put :hide
+    end
+
     resources :posts, shallow: true do
      resources :comments, shallow: true, only: [:create]
    end

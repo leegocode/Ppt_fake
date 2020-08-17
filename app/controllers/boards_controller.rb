@@ -1,10 +1,10 @@
 class BoardsController < ApplicationController
 
-  before_action :find_board, only: [:show, :edit, :update, :destroy , :favorite]
+  before_action :find_board, only: [:show, :edit, :update, :destroy , :favorite, :hide]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @boards = Board.where(deleted_at: nil)
+    @boards = Board.normal
   end
 
   def show
@@ -21,6 +21,11 @@ class BoardsController < ApplicationController
       format.html { redirect_to favorites_path, notice: 'OK!' }
       format.json { render json: {status: @board.favorited_by?(current_user)}}
     end
+  end
+
+  def hide
+   @board.hide! if @board.may_hide?
+   redirect_to boards_path, notice: '看版己隱藏'
   end
 
   def new
@@ -65,7 +70,7 @@ class BoardsController < ApplicationController
   private
 
   def find_board
-    @board = Board.find(params[:id])
+    @board = Board.normal.find(params[:id])
   end
 
 
