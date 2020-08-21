@@ -10,14 +10,14 @@ class PagesController < ApplicationController
   def payment
     @token = gateway.client_token.generate
 
-    @plan = params[:plan]
-    @price = plan_price(@plan)
+    @plan = params[:plan] 
+    @price = plan_price(@plan) #決定價錢
   end
 
 
   def checkout
     result = gateway.transaction.sale(
-      amount: plan_price(params[:plan]),
+      amount: plan_price(params[:plan]), #定義在下面
       payment_method_nonce: params[:nonce],
       options: {
         submit_for_settlement: true

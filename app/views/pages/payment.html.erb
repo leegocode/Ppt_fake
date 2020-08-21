@@ -1,28 +1,28 @@
-<h1>方案 <%= @plan.upcase %></h1>
-<h2>價錢 <%= @price %></h2>
+<h1>方案 <%= @plan.upcase %> </h1>
 
-<script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
+<h2>價錢 <%= @price %> </h2>
+
+
+<script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"> </script>
 
 <%= form_with(url: "/checkout?plan=#{@plan}", id: 'payment_form', method: 'post', local: true) do %>
-  <div id="dropin-container"></div>
-  <button id="submit-button">付款</button>
+  <div id="dropin-container"> </div>
+  <button id="submit-button"> 付款 </button>
   <input type="hidden" value="" id="nonce" name="nonce">
 <% end %>
 
 <script>
   var button = document.querySelector('#submit-button');
-
   braintree.dropin.create({
     authorization: '<%= @token %>',
     container: '#dropin-container'
   }, function (createErr, instance) {
     button.addEventListener('click', function (e) {
-      e.preventDefault();
-
+      e.preventDefault(); //先不執行
       instance.requestPaymentMethod(function (err, payload) {
-        const nonce_dom = document.querySelector('#nonce');
-        const form = document.querySelector('#payment_form');
-        nonce_dom.value = payload.nonce;
+        const nonce_dom = document.querySelector('#nonce'); //選hidden input
+        const form = document.querySelector('#payment_form'); //選form
+        nonce_dom.value = payload.nonce; //把nonce給空input的值
         form.submit();
       });
     });
