@@ -10,3 +10,6 @@ require("../scripts");
 require("stylesheets");
 
 import "controllers"
+
+require("trix")
+require("@rails/actiontext")

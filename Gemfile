@@ -49,6 +49,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'foreman', '~> 0.87.1'
+  gem 'letter_opener_web'
+  # gem 'carrierwave', '~> 2.0'
 end
 
 group :test do

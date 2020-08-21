@@ -34,8 +34,9 @@ class PostsController < ApplicationController
   def create
     @post = @board.posts.new(post_params)
 
-
     if @post.save
+
+      # SendmailJob.set(wait: 10.seconds).perform_later(@post)
       redirect_to @board, notice: "add new post!"
     else
       render 'new'
@@ -66,7 +67,7 @@ end
 
 
 def post_params
-params.require(:post).permit(:title , :content).merge(user: current_user)
+params.require(:post).permit(:title , :content, :photo).merge(user: current_user)
 end
 
 end

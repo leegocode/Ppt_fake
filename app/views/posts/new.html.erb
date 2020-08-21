@@ -19,6 +19,10 @@
   <%= p.label :content, "content" %>
   <%= p.text_area :content %>
 </div>
+<div class="field">
+  <%= p.label :photo, "upload" %>
+  <%= p.file_field :photo %>
+</div>
 
 <%= p.submit "submit" %>
 <% end %>

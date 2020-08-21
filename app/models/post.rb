@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :comments
   validates :title, presence: true
   validates :serial, uniqueness: true
-
   before_create  :create_serial
+  has_one_attached :photo
   # before_create :generate_permalink
 
   # def to_param
