@@ -8,6 +8,7 @@
 
 <h1>add new post</h1>
 
+
 <%= form_with(model: @post, url: board_posts_path, local: true) do |p| %>
 
 <div class="field">
@@ -19,6 +20,14 @@
   <%= p.label :content, "content" %>
   <%= p.text_area :content %>
 </div>
+
+
+<div class="field">
+  <%= p.label :hello, "內文" %>
+  <%= p.rich_text_area :hello %>
+</div>
+
+
 <div class="field">
   <%= p.label :photo, "upload" %>
   <%= p.file_field :photo %>

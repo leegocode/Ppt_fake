@@ -7,9 +7,6 @@ form{
 
 
   }
-
-
-
   .field_with_errors{
     input{
 
@@ -48,6 +45,7 @@ body{
     display: block;
     margin: auto;
     text-align: center;
+    margin-bottom: 1rem;
 
   }
   h2{
@@ -68,14 +66,13 @@ body{
   font-size:20px;
 }
 
-nav{
-  background-color: rgba(205, 205, 205, 0.39);
-  color: rgb(221, 112, 72);
-  display: inline;
-  // margin: 1rem;
-  padding: 0.5rem;
+.navi{
+  display: inline-block;
+  background-color: rgba(255, 243, 138, 0.78);
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 20px;
 }
-
 
 input[type=submit] {
   background-color: #090909;
@@ -85,4 +82,12 @@ input[type=submit] {
   border: none;
   color: white;
    /*your styles here.....*/
+}
+.footer{
+  display: inline-block;
+  color:white;
+  // margin:0 auto;
+  margin: auto;
+  // padding: 2rem;
+  // background-color: #000000;
 }

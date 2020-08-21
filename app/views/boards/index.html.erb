@@ -26,9 +26,7 @@
       <%= link_to "hidden", hide_board_path(board), method: 'put' %>
     </li>
   </div>
-
   <% end %>
-
 </ul>
 
-<%= paginate @boards %>
+<div class="footer"><%= paginate @boards %></div>

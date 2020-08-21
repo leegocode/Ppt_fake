@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  has_rich_text :hello
   belongs_to :board
   belongs_to :user
   has_many :comments
